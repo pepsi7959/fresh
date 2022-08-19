@@ -13,26 +13,20 @@ func watchFolder(path string) {
 	if err != nil {
 		fatal(err)
 	}
-	defer watcher.Close()
 
 	go func() {
 		for {
 			select {
-			case ev, ok := <-watcher.Events:
-				if !ok {
-					return
-				}
+			case ev := <-watcher.Events:
 				if isWatchedFile(ev.Name) {
 					watcherLog("sending event %s", ev)
 					startChannel <- ev.String()
 				}
-			case err, ok := <-watcher.Errors:
-				if !ok {
-					return
-				}
+			case err := <-watcher.Errors:
 				watcherLog("error: %s", err)
 			}
 		}
+		defer watcher.Close()
 	}()
 
 	watcherLog("Watching %s", path)
