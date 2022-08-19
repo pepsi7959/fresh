@@ -18,7 +18,7 @@ func init() {
 	logFilePath = filepath.Join(root, tmpPath, fileName)
 }
 
-// Returns true if a build error file exists in the tmp folder.
+// HasErrors Returns true if a build error file exists in the tmp folder.
 func HasErrors() bool {
 	if _, err := os.Stat(logFilePath); err == nil {
 		return true
@@ -27,7 +27,7 @@ func HasErrors() bool {
 	return false
 }
 
-// It renders an error page with the build error message.
+// RenderError It renders an error page with the build error message.
 func RenderError(w http.ResponseWriter) {
 	data := map[string]interface{}{
 		"Output": readErrorFile(),

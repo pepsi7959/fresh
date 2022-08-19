@@ -8,8 +8,6 @@ import (
 	"strconv"
 	"strings"
 	"time"
-
-	"github.com/pilu/config"
 )
 
 const (
@@ -85,7 +83,7 @@ func loadRunnerConfigSettings() {
 	}
 
 	logger.Printf("Loading settings from %s", configPath())
-	sections, err := config.ParseFile(configPath(), mainSettingsSection)
+	sections, err := ParseFile(configPath(), mainSettingsSection)
 	if err != nil {
 		return
 	}
@@ -98,14 +96,6 @@ func loadRunnerConfigSettings() {
 func initSettings() {
 	loadEnvSettings()
 	loadRunnerConfigSettings()
-}
-
-func getenv(key, defaultValue string) string {
-	if value := os.Getenv(key); value != "" {
-		return value
-	}
-
-	return defaultValue
 }
 
 func root() string {
