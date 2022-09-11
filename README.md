@@ -8,10 +8,10 @@ Fresh is a command line tool that builds and (re)starts your web application eve
     go get github.com/pepsi7959/fresh
     
     # go1.18.x
-    go get github.com/pepsi7959/fresh@v1.2.0
+    go install github.com/pepsi7959/fresh@v1.2.0
     
     # go1.19.x
-    go get github.com/pepsi7959/fresh@v1.3.0
+    go install github.com/pepsi7959/fresh@v1.3.0
 
 ## Usage
 
